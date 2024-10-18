@@ -1,0 +1,57 @@
+﻿@page "/registration"
+@using System.ComponentModel.DataAnnotations
+
+<h3>Registration Form</h3>
+
+<EditForm Model="@registrationModel" OnValidSubmit="@HandleValidSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div>
+        <label>First Name:</label>
+        <InputText id="firstName" @bind-Value="registrationModel.FirstName" />
+        <ValidationMessage For="@(() => registrationModel.FirstName)" />
+    </div>
+
+    <div>
+        <label>Last Name:</label>
+        <InputText id="lastName" @bind-Value="registrationModel.LastName" />
+        <ValidationMessage For="@(() => registrationModel.LastName)" />
+    </div>
+
+    <div>
+        <label>Email:</label>
+        <InputText id="email" @bind-Value="registrationModel.Email" />
+        <ValidationMessage For="@(() => registrationModel.Email)" />
+    </div>
+
+    <button type="submit">Submit</button>
+</EditForm>
+
+@if (isSubmitted)
+{
+    <p>Form submitted successfully!</p>
+}
+
+@code {
+    private RegistrationModel registrationModel = new();
+    private bool isSubmitted = false;
+
+    private void HandleValidSubmit()
+    {
+        isSubmitted = true;
+    }
+
+    public class RegistrationModel
+    {
+        [Required(ErrorMessage = "First name is required.")]
+        public string FirstName { get; set; } = string.Empty;
+
+        [Required(ErrorMessage = "Last name is required.")]
+        public string LastName { get; set; } = string.Empty;
+
+        [Required(ErrorMessage = "Email is required.")]
+        [EmailAddress(ErrorMessage = "Invalid email format.")]
+        public string Email { get; set; } = string.Empty;
+    }
+}

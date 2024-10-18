@@ -1,0 +1,33 @@
+﻿@page "/todo"
+
+<h3>To-Do List</h3>
+
+<input @bind="newTask" placeholder="Enter a task" />
+<button @onclick="AddTask">Add Task</button>
+<button @onclick="ClearTasks">Clear All</button>
+
+<ul>
+    @foreach (var task in tasks)
+    {
+        <li>@task</li>
+    }
+</ul>
+
+@code {
+    private string newTask = string.Empty;
+    private List<string> tasks = new();
+
+    private void AddTask()
+    {
+        if (!string.IsNullOrWhiteSpace(newTask))
+        {
+            tasks.Add(newTask);
+            newTask = string.Empty;
+        }
+    }
+
+    private void ClearTasks()
+    {
+        tasks.Clear();
+    }
+}

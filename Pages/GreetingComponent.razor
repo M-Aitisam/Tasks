@@ -1,0 +1,12 @@
+﻿@page "/greeting"
+
+<h3>Greeting Component</h3>
+
+<p>Enter your name:</p>
+<input @bind="userName" placeholder="Enter your name" />
+
+<p>Greeting message: Hello, @userName!</p>
+
+@code {
+    private string userName = string.Empty;
+}
