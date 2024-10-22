@@ -4,9 +4,11 @@
 
 <p>Enter your name:</p>
 <input @bind="userName" placeholder="Enter your name" />
+<br />
 
-<p>Greeting message: Hello, @userName!</p>
+
+<h3>Greeting message: Hello  : <span style="background-color: blue; font-weight:bold;"> @userName!</span> </h3>
 
 @code {
-    private string userName = string.Empty;
+    private string? userName ;
 }
