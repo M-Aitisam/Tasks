@@ -8,11 +8,16 @@
 
 <button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
 
+<div style="margin-top: 10px;">
+    <label>Set the count manually: </label>
+    <input  type="number" @bind="currentCount" />
+</div>
+
 @code {
     private int currentCount = 0;
 
     private void IncrementCount()
     {
-        currentCount +=2;
+        currentCount += 1;
     }
 }
