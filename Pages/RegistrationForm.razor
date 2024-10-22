@@ -7,30 +7,31 @@
     <DataAnnotationsValidator />
     <ValidationSummary />
 
-    <div>
-        <label>First Name:</label>
-        <InputText id="firstName" @bind-Value="registrationModel.FirstName"  />
-        <ValidationMessage For="@(() => registrationModel.FirstName)" />
+    <div class="form-group">
+        <label for="firstName">First Name:</label>
+        <InputText id="firstName" class="form-control" Placeholder="Enter your First Name " @bind-Value="registrationModel.FirstName" />
+        <ValidationMessage For="@(() => registrationModel.FirstName)" class="text-danger" />
     </div>
 
-    <div>
-        <label>Last Name:</label>
-        <InputText id="lastName" @bind-Value="registrationModel.LastName" />
-        <ValidationMessage For="@(() => registrationModel.LastName)" />
+    <div class="form-group">        
+        <InputText id="lastName" class="form-control" Placeholder="Enter your Last Name" @bind-Value="registrationModel.LastName" />
+        <ValidationMessage For="@(() => registrationModel.LastName)" class="text-danger" />
     </div>
 
-    <div>
-        <label>Email:</label>
-        <InputText id="email" @bind-Value="registrationModel.Email" />
-        <ValidationMessage For="@(() => registrationModel.Email)" />
+    <div class="form-group">
+       
+        <InputText id="email" class="form-control" Placeholder="Enter your Email" @bind-Value="registrationModel.Email" />
+        <ValidationMessage For="@(() => registrationModel.Email)" class="text-danger" />
     </div>
 
-    <button type="submit">Submit</button>
+    <button type="submit" class="btn btn-primary mt-3">Submit</button>
 </EditForm>
 
 @if (isSubmitted)
 {
-    <p>Form submitted successfully!</p>
+    <div class="alert alert-success mt-3">
+                       <p>Form submitted successfully!</p>
+    </div>
 }
 
 @code {
