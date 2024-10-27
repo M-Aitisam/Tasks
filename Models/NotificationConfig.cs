@@ -2,7 +2,7 @@
 {
     public class NotificationConfig
     {
-        public int DefaultNumberOfNotifications { get; set; } = 5; // Default value
+        public int DefaultNumberOfNotifications { get; set; } = 7; // Default value
         public string NotificationStyle { get; set; } = "Compact"; // Default value
     }
 }

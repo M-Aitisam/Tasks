@@ -49,13 +49,13 @@ else
         isLoading = true; // Set loading state
         try
         {
-            notifications = await NotificationService.GetNotificationsAsync(0); // 0 means use default
+            notifications = await NotificationService.GetNotificationsAsync(0); 
         }
         catch (Exception ex)
         {
-            // Handle any exceptions here (e.g., log them or display an error message)
+           
             Console.WriteLine($"Error loading notifications: {ex.Message}");
-            // Optionally display an error message to the user
+          
         }
         finally
         {
