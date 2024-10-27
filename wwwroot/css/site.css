@@ -101,3 +101,27 @@ a, .btn-link {
     background-color: #d4edda;
     border-color: #c3e6cb;
 }
+
+
+
+/*
+
+*/
+
+.notifications {
+    margin-top: 10px;
+}
+
+.notification {
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+}
+
+    .notification.compact {
+        background-color: #f9f9f9;
+    }
+
+    .notification.detailed {
+        background-color: #e9ecef;
+    }

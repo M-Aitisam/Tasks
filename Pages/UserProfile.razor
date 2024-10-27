@@ -1,0 +1,22 @@
+﻿@page "/userprofile"
+@inject Project1_Lab_Simple.Models.AuthenticationStateService AuthService
+
+<div>
+    @if (AuthService.IsAuthenticated)
+    {
+        <h3>Welcome, Aitisam!</h3>
+        <Dashboard />
+    }
+    else
+    {
+        <h3>Please log in to view your profile.</h3>
+        <button @onclick="LogIn">Log In</button>
+    }
+</div>
+
+@code {
+    private void LogIn()
+    {
+        AuthService.LogIn();
+    }
+    }

@@ -1,0 +1,27 @@
+﻿
+@page "/notificationsettings"
+@inject Project1_Lab_Simple.Models.NotificationConfig NotificationConfig
+
+<h3>Notification Settings</h3>
+
+<div>
+    <label for="numNotifications">Default Number of Notifications:</label>
+    <input type="number" id="numNotifications" @bind="NotificationConfig.DefaultNumberOfNotifications" />
+</div>
+
+<div>
+    <label for="style">Notification Style:</label>
+    <select id="style" @bind="NotificationConfig.NotificationStyle">
+        <option value="Compact">Compact</option>
+        <option value="Detailed">Detailed</option>
+    </select>
+</div>
+
+<button @onclick="SaveSettings">Save Settings</button>
+
+@code {
+    private void SaveSettings()
+    {
+        // Optionally save settings to persistent storage if needed
+    }
+}

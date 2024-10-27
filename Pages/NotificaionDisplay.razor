@@ -1,0 +1,65 @@
+﻿@page "/notificationdisplay"
+@inject Project1_Lab_Simple.Models.NotificationService NotificationService
+@inject Project1_Lab_Simple.Models.NotificationConfig NotificationConfig
+
+<h3>Notifications</h3>
+
+<button @onclick="LoadNotifications">Load Notifications</button>
+
+@if (isLoading)
+{
+    <p>Loading notifications...</p>
+}
+else
+{
+    if (notifications.Count > 0)
+    {
+        <div class="notifications">
+            @if (NotificationConfig.NotificationStyle == "Compact")
+            {
+                foreach (var notification in notifications)
+                {
+                    <div class="notification compact">@notification</div>
+                }
+            }
+            else
+            {
+                foreach (var notification in notifications)
+                {
+                    <div class="notification detailed">
+                        <strong>@notification</strong>
+                        <p>This is a detailed description for @notification.</p>
+                    </div>
+                }
+            }
+        </div>
+    }
+    else
+    {
+        <p>No notifications to display.</p>
+    }
+}
+
+@code {
+    private List<string> notifications = new List<string>();
+    private bool isLoading = false;
+
+    private async Task LoadNotifications()
+    {
+        isLoading = true; // Set loading state
+        try
+        {
+            notifications = await NotificationService.GetNotificationsAsync(0); // 0 means use default
+        }
+        catch (Exception ex)
+        {
+            // Handle any exceptions here (e.g., log them or display an error message)
+            Console.WriteLine($"Error loading notifications: {ex.Message}");
+            // Optionally display an error message to the user
+        }
+        finally
+        {
+            isLoading = false; // Reset loading state
+        }
+    }
+}

@@ -1,0 +1,12 @@
+﻿@page "/DataService"
+@inject Project1_Lab_Simple.Models.DataService dataService
+ 
+<div style="font-size:2rem ; color:red">@Data</div>
+@code {
+	private string? Data;
+
+	protected override async Task OnInitializedAsync()
+	{
+		Data = await dataService.GetData();
+	}
+}

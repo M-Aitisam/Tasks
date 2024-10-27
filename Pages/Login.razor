@@ -1,0 +1,20 @@
+﻿@page "/login"
+@inject Project1_Lab_Simple.Models.AuthenticationStateService AuthService
+
+<button @onclick="ToggleAuthentication">@ButtonText</button>
+
+@code {
+    private string ButtonText => AuthService.IsAuthenticated ? "Log Out" : "Log In";
+
+    private void ToggleAuthentication()
+    {
+        if (AuthService.IsAuthenticated)
+        {
+            AuthService.LogOut();
+        }
+        else
+        {
+            AuthService.LogIn();
+        }
+    }
+}

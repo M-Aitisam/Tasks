@@ -1,0 +1,57 @@
+﻿@page "/dashboard"
+@inject NavigationManager Navigation
+<link href="css/dashboard.css" rel="stylesheet" />
+
+<div class="dashboard">
+    <h2>Aitisam mini Dashboard</h2>
+
+    <div class="dashboard-section recent-activities">
+        <h3>Recent Activities</h3>
+        <ul>
+            @foreach (var activity in recentActivities)
+            {
+                <li>@activity</li>
+            }
+        </ul>
+    </div>
+
+    <div class="dashboard-section account-settings">
+        <h3>Account Settings</h3>
+        <p>Manage your account preferences and settings.</p>
+        <button class="dashboard-button" @onclick="EditProfile">Edit Profile</button>
+        <button class="dashboard-button" @onclick="ChangePassword">Change Password</button>
+    </div>
+
+    <div class="dashboard-section notifications">
+        <h3>Notifications</h3>
+        <p>@($"You have {notificationsCount} new notifications.")</p>
+        <button class="dashboard-button" @onclick="ViewNotifications">View Notifications</button>
+    </div>
+</div>
+
+@code {
+    private List<string> recentActivities = new List<string>
+    {
+        "Logged in successfully.",
+        "Updated profile information.",
+        "Completed profile verification."
+    };
+
+    private int notificationsCount = 3;
+
+    private void EditProfile()
+    {
+        Navigation.NavigateTo("/dashboard");
+    }
+
+    private void ChangePassword()
+    {
+        Navigation.NavigateTo("/dashboard");
+    }
+
+    private void ViewNotifications()
+    {
+        Navigation.NavigateTo("/dashboard");
+        notificationsCount = 0;
+    }
+}
