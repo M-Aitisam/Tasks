@@ -1,14 +1,14 @@
-﻿@page "/greeting"
+﻿   @page "/greeting"
 
-<h3>Greeting Component</h3>
+   <PageTitle>Greeting Page</PageTitle>
 
-<p>Enter your name:</p>
-<input @bind="userName" placeholder="Enter your name" />
-<br />
+   <h3>Greeting Component</h3>
 
+   <p>Enter your name:</p>
+   <input @bind="userName" placeholder="Enter your name" /> <!-- Two-way binding -->
+   <br />
 
-<h3>Greeting message: Hello  : <span style="background-color: blue; font-weight:bold;"> @userName!</span> </h3>
-
-@code {
-    private string? userName ;
-}
+   <h3>Greeting message: Hello: <span style="background-color: blanchedalmond; font-weight: bold;">@userName!</span></h3> <!-- One-way binding -->
+   @code {
+       private string? userName;
+   }

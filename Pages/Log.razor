@@ -1,0 +1,10 @@
+﻿@page "/Log"
+@inject Project1_Lab_Simple.Models.LoggerService loggerService
+
+<button @onclick="LogMessage">Log Meesage</button>
+@code {
+	private void LogMessage()
+	{
+	loggerService.Log("Welcome Aitisam");
+    }
+}
