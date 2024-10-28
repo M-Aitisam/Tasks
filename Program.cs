@@ -19,6 +19,7 @@ builder.Services.AddScoped<DataService>();// A new instance is created  per unit
 builder.Services.AddSingleton<AuthenticationStateService>();
 builder.Services.AddSingleton<NotificationConfig>(); // Register NotificationConfig
 builder.Services.AddScoped<NotificationService>(); // Register NotificationService
+builder.Services.AddHttpClient();
 
 var app = builder.Build();
 
