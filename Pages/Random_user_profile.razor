@@ -1,8 +1,112 @@
-﻿@page "/randon"
-@inject HttpClient httpClinet
+﻿@page "/random"
+@inject HttpClient httpClient
 
+@if (user == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <div class="user-profile">
+        <h4>@(user.Name?.First ?? "Unknown") @(user.Name?.Last ?? "Unknown")</h4>
+        <p><strong>Gender:</strong> @(user.Gender ?? "Not specified")</p>
+        <p><strong>Email:</strong> @(user.Email ?? "Not specified")</p>
+        <p><strong>Phone:</strong> @(user.Phone ?? "Not specified")</p>
+        
+        @if (!string.IsNullOrEmpty(user.Picture?.Large))
+        {
+            <img src="@user.Picture.Large" alt="User Picture" class="user-picture" />
+        }
+    </div>
+}
 
+<style>
+    .user-profile {
+        max-width: 400px;
+        margin: auto;
+        padding: 2em;
+        border: 1px solid #e1e4e8;
+        border-radius: 15px;
+        background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        text-align: center;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .user-profile h4 {
+        color: #34495e;
+        font-size: 1.8em;
+        margin-bottom: 0.3em;
+        font-weight: 600;
+    }
+
+    .user-profile p {
+        margin: 0.5em 0;
+        font-size: 1em;
+        color: #555;
+        font-weight: 500;
+    }
+
+    .user-profile p strong {
+        color: #2c3e50;
+    }
+
+    .user-profile .user-picture {
+        margin-top: 1.5em;
+        max-width: 150px;
+        height: auto;
+        border-radius: 50%;
+        transition: transform 0.3s, box-shadow 0.3s;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    .user-profile .user-picture:hover {
+        transform: scale(1.05);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
+    }
+
+  
+    </style>
 
 @code {
+    private UserProfile? user;
 
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            // Fetch random user data from the API
+            var response = await httpClient.GetFromJsonAsync<RandomUserResponse>("https://randomuser.me/api/");
+            user = response?.Results?.FirstOrDefault();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error fetching user data: {ex.Message}");
+        }
+    }
+
+    public class RandomUserResponse
+    {
+        public List<UserProfile>? Results { get; set; }
+    }
+
+    public class UserProfile
+    {
+        public Name? Name { get; set; }
+        public string? Gender { get; set; }
+        public string? Email { get; set; }
+        public string? Phone { get; set; }
+        public Picture? Picture { get; set; }
+    }
+
+    public class Name
+    {
+        public string? First { get; set; }
+        public string? Last { get; set; }
+    }
+
+    public class Picture
+    {
+        public string? Large { get; set; }
+    }
 }
